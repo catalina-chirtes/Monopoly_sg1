@@ -1,9 +1,11 @@
 public class Board {
-    String[] places;
+    Square[] squares;
     int Bank;
 
-    public Board(String[] places){
-        this.places = places;
+    public Board(){
+        InputDevice id = new InputDevice();
+        this.squares = new Square[40];
+        this.squares = id.getSquares();
         this.Bank = 20580;
     }
 }

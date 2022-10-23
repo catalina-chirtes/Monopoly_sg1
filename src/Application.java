@@ -7,8 +7,7 @@ public class Application {
         this.out = out;
     }
     Player[] playersArr = new Player[10];
-    String[] aux = {""};
-    Board board = new Board(aux);
+    Board board = new Board();
 
     public void initPlayers(){
         for(int i=0;i<getPlayers();i++)
@@ -44,7 +43,8 @@ public class Application {
                 playersArr[j].move(in.ThrowDice(), board);
                 out.print_name(playersArr[j]);
                 out.print_roll_nr(playersArr[j]);
-                out.print_position(playersArr[j], in.getPlaces());
+                out.print_position(playersArr[j], in.getSquares());
+                action_on_this_position(playersArr[j], playersArr, board);
                 out.print_money(playersArr[j]);
             }
         }
@@ -70,5 +70,14 @@ public class Application {
             }
         out.print_winner(winner);
         out.print_bank(board);
+    }
+    public void action_on_this_position(Player player, Player[] players, Board board) {
+        if (board.squares[player.getPosition()] instanceof Property)
+        {
+            if (((Property) board.squares[player.getPosition()]).isOwned()==false)
+                ((Property) board.squares[player.getPosition()]).buy_property(player, board);
+            else
+                ((Property) board.squares[player.getPosition()]).pay_tax(player, players);
+        }
     }
 }

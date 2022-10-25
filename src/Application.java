@@ -7,7 +7,7 @@ public class Application {
         this.out = out;
     }
     Player[] playersArr = new Player[10];
-    String[] aux = {""};
+    Square[] aux = {};
     Board board = new Board(aux);
 
     public void initPlayers(){

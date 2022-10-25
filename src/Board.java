@@ -1,8 +1,8 @@
 public class Board {
-    String[] places;
+    Square[] places;
     int Bank;
 
-    public Board(String[] places){
+    public Board(Square[] places){
         this.places = places;
         this.Bank = 20580;
     }

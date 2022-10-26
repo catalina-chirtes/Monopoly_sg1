@@ -1,8 +1,11 @@
 public class Player {
     private String name;
-    private int money = 0;
+    public int money = 1500;
     private int dice_roll = 0;
     private int position = 0;
+    public int property_nb= 0;
+
+
 
     public Player(String name) {
         this.name = name;

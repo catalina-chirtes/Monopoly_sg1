@@ -18,14 +18,15 @@ public class OutputDevice {
         System.out.println("Number on dice: " + player.getDice_roll());
     }
 
-    void print_position(Player player, String[] positions){
+    void print_position(Player player, Square[] positions){
         System.out.println("Position on board: " + positions[player.getPosition()]);
     }
 
     void print_money(Player player){
-        System.out.println("Money: " + player.getMoney() + "$\n");
+        System.out.println("Money: " + player.getMoney() + "$");
     }
 
+    void print_propery_nb(Player player){System.out.println("Properies: "+ player.property_nb+"\n");}
     void print_finish(){
         System.out.println("- - - - - - - - - - - - - - - - - - - - - - - -");
         System.out.println("FINISH");

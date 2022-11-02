@@ -1,9 +1,9 @@
 public class Board {
-    Square[] places;
-    int Bank;
+    Square[] squares;
 
-    public Board(Square[] places){
-        this.places = places;
-        this.Bank = 20580;
+    public Board(){
+        InputDevice id = new InputDevice();
+        this.squares = new Square[40];
+        this.squares = id.getSquares();
     }
 }

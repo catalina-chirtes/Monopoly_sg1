@@ -1,11 +1,14 @@
 public class Square {
-    String name;
-    public Square(String name) {
-        this.name = name;
+    private String name;
+    private Action action;
+    Square(String name, Action action) {
+        this.name=name;
+        this.action=action;
     }
-
-    public String toString(){
-        return this.name;
+    String getName() {
+        return name;
+    }
+    Action getAction() {
+        return action;
     }
 }
-

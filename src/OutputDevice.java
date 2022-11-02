@@ -19,14 +19,13 @@ public class OutputDevice {
     }
 
     void print_position(Player player, Square[] positions){
-        System.out.println("Position on board: " + positions[player.getPosition()]);
+        System.out.println("Position on board: " + positions[player.getPosition()].getName());
     }
 
     void print_money(Player player){
-        System.out.println("Money: " + player.getMoney() + "$");
+        System.out.println("Money: " + player.getMoney() + "$\n");
     }
 
-    void print_propery_nb(Player player){System.out.println("Properies: "+ player.property_nb+"\n");}
     void print_finish(){
         System.out.println("- - - - - - - - - - - - - - - - - - - - - - - -");
         System.out.println("FINISH");
@@ -38,7 +37,7 @@ public class OutputDevice {
         System.out.println("The winner is " + "\033[0;1m" + player.getName() + "\u001B[0m" + " ! HURRAY!!");
     }
 
-    void print_bank(Board board){
-        System.out.println("Money left in bank: " + board.Bank + "$");
+    void print_bank(Player Bank){
+        System.out.println("Money left in bank: " + Bank.getMoney() + "$");
     }
 }

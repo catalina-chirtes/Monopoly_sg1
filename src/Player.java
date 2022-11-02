@@ -1,15 +1,8 @@
 public class Player {
     private String name;
-    public int money = 1500;
+    private int money = 0;
     private int dice_roll = 0;
     private int position = 0;
-    public int property_nb= 0;
-
-
-
-    public Player(String name) {
-        this.name = name;
-    }
 
     public String getName() {
         return name;
@@ -31,15 +24,18 @@ public class Player {
         return dice_roll;
     }
 
-    public void move(int dice_roll, Board board) {
+    public void setDice_roll(int dice_roll) {
         this.dice_roll = dice_roll;
-        this.position = this.position + dice_roll;
-        if(this.position >= 39){
-            this.position = this.position - 39;
-            this.money = this.money + 200;
-            board.Bank = board.Bank - 200;
-        }
     }
+//    public void move(int dice_roll, Player Bank) {
+//        this.dice_roll = dice_roll;
+//        this.position = this.position + dice_roll;
+//        if(this.position > 39){
+//            this.position = this.position - 40;
+//            this.money = this.money + 200;
+//            Bank.setMoney(Bank.getMoney() - 200);
+//        }
+//    }
 
     public int getPosition() {
         return position;
@@ -48,6 +44,4 @@ public class Player {
     public void setPosition(int position) {
         this.position = position;
     }
-
-
 }

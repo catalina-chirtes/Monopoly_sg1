@@ -8,10 +8,17 @@ public class Application {
     }
     Player[] playersArr = new Player[10];
     Board board = new Board();
+    Player Bank = new Player();
+
 
     public void initPlayers(){
         for(int i=0;i<getPlayers();i++)
-            playersArr[i] = new Player(in.getName());
+        {
+            playersArr[i] = new Player();
+            playersArr[i].setName(in.getName());
+        }
+        Bank.setName("Bank");
+        Bank.setMoney(20580);
     }
 
     public int getPlayers() {
@@ -40,10 +47,8 @@ public class Application {
         for(int i=1;i<=this.rounds;i++){
             out.print_round_nr(i);
             for(int j=0;j<players;j++){
-                playersArr[j].move(in.ThrowDice(), board);
                 out.print_name(playersArr[j]);
                 out.print_roll_nr(playersArr[j]);
-                out.print_position(playersArr[j], in.getSquares());
                 action_on_this_position(playersArr[j], playersArr, board);
                 out.print_money(playersArr[j]);
             }
@@ -54,7 +59,7 @@ public class Application {
     public void winner(){
         double maximum = -1;
         int position = -1;
-        Player winner = new Player("0");
+        Player winner = new Player();
         for(int i=0;i<rounds;i++)
             for(int j=0;j<players;j++)
             {
@@ -69,15 +74,34 @@ public class Application {
                 }
             }
         out.print_winner(winner);
-        out.print_bank(board);
+        out.print_bank(Bank);
     }
     public void action_on_this_position(Player player, Player[] players, Board board) {
-        if (board.squares[player.getPosition()] instanceof Property)
+        Action action = new MoveAction();
+        ((MoveAction) action).move(player, in.ThrowDice(), Bank);
+        Action next_action = action.apply(player);
+        while (next_action != null)
         {
-            if (((Property) board.squares[player.getPosition()]).isOwned()==false)
-                ((Property) board.squares[player.getPosition()]).buy_property(player, board);
-            else
-                ((Property) board.squares[player.getPosition()]).pay_tax(player, players);
+            if (next_action instanceof PaymentAction)
+            {
+                action = new PaymentAction();
+                Player payment_receiver = new Player();
+                if (((Property) board.squares[player.getPosition()]).isOwned()==false)
+                    payment_receiver = Bank;
+                else
+                    for (Player i: players)
+                    {
+                        if (i.getName().equals(((Property) board.squares[player.getPosition()]).getOwner_name()))
+                        {
+                            if ((i.getName()).equals(player.getName()))
+                                System.out.println("Player " + player.getName() + " owns this property.");
+                            payment_receiver = i;
+                            break;
+                        }
+                    }
+                ((PaymentAction) action).payment(player, payment_receiver, ((Property) board.squares[player.getPosition()]));
+            }
+            next_action = action.apply(player);
         }
     }
 }

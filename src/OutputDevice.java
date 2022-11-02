@@ -20,12 +20,6 @@ public class OutputDevice {
 
     void print_position(Player player, Square[] positions){
         System.out.println("Position on board: " + positions[player.getPosition()].getName());
-        if (positions[player.getPosition()] instanceof Property) {
-            if (((Property) positions[player.getPosition()]).isOwned() == true && ((Property) positions[player.getPosition()]).getOwner_name().equals(player.getName()) == false)
-                System.out.println("Player " + player.getName() + " payed property tax");
-            else
-                System.out.println("Player " + player.getName() + " owns this property");
-        }
     }
 
     void print_money(Player player){
@@ -43,7 +37,7 @@ public class OutputDevice {
         System.out.println("The winner is " + "\033[0;1m" + player.getName() + "\u001B[0m" + " ! HURRAY!!");
     }
 
-    void print_bank(Board board){
-        System.out.println("Money left in bank: " + board.Bank + "$");
+    void print_bank(Player Bank){
+        System.out.println("Money left in bank: " + Bank.getMoney() + "$");
     }
 }

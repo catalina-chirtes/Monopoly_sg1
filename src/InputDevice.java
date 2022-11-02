@@ -30,7 +30,7 @@ public class InputDevice {
         for (String p:places)
         {
             if(p.equals("Start") || p.equals("Community Chest") || p.equals("INCOME TAX") || p.equals("Chance") || p.equals("Just Visiting Jail") || p.equals("Free Parking") || p.equals("Go to Jail") || p.equals("LUXURY TAX"))
-                squares[i] = new Square(p);
+                squares[i] = new Square(p, null);
             else if (p.equals("Reading Railroad") || p.equals("Electric Company") || p.equals("Pennsylvania Railroad") || p.equals("B&O Railroad") || p.equals("Water Works") || p.equals("Short Line"))
                 squares[i] = new Property(p, false, 100);
             else

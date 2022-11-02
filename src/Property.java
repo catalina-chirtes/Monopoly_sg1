@@ -5,7 +5,7 @@ public class Property extends Square{
     private int price;
 
     Property (String name, boolean upgradable, int price) {
-        super(name);
+        super(name, null);
         this.upgradable = upgradable;
         this.price = price;
     }
@@ -27,23 +27,23 @@ public class Property extends Square{
         return price;
     }
 
-    public void buy_property(Player player, Board board) {
-        if (player.getMoney()>=this.price)
-        {
-            board.Bank+=this.price;
-            player.setMoney(player.getMoney() - this.price);
-            setOwner_name(player.getName());
-        }
-        else
-            System.out.println("Player " + player.getName() + " does not have enough money to buy this property.");
-    }
-    public void pay_tax (Player player, Player[] players_arr) {
-        for (Player i: players_arr)
-            if (i.getName().equals(owner_name))
-            {
-                i.setMoney(i.getMoney() + this.price);
-                player.setMoney(player.getMoney() - this.price);
-                break;
-            }
-    }
+//    public void buy_property(Player player, Player Bank) {
+//        if (player.getMoney()>=this.price)
+//        {
+//            Bank.setMoney(Bank.getMoney() + this.price);
+//            player.setMoney(player.getMoney() - this.price);
+//            setOwner_name(player.getName());
+//        }
+//        else
+//            System.out.println("Player " + player.getName() + " does not have enough money to buy this property.");
+//    }
+//    public void pay_tax (Player player, Player[] players_arr) {
+//        for (Player i: players_arr)
+//            if (i.getName().equals(owner_name))
+//            {
+//                i.setMoney(i.getMoney() + this.price);
+//                player.setMoney(player.getMoney() - this.price);
+//                break;
+//            }
+//    }
 }
